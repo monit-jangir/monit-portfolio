@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 
 // Component imports
 import ChatBottombar from '@/components/chat/chat-bottombar';
-import ChatLanding from '@/components/chat/chat-landing';
+import ChatLanding from '@/components/chat/chat-landing'; // <-- THIS IS THE PRIMARY FIX (NO CURLY BRACES)
 import ChatMessageContent from '@/components/chat/chat-message-content';
 import { SimplifiedChatView } from '@/components/chat/simple-chat-view';
 import {
@@ -49,31 +49,18 @@ const Avatar = dynamic<AvatarProps>(
     Promise.resolve(({ hasActiveTool, videoRef, isTalking }: AvatarProps) => {
       // This function will only execute on the client
       const isIOS = () => {
-        // Multiple detection methods
         const userAgent = window.navigator.userAgent;
         const platform = window.navigator.platform;
         const maxTouchPoints = window.navigator.maxTouchPoints || 0;
-
-        // UserAgent-based check
-        const isIOSByUA =
-          //@ts-ignore
-          /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-
-        // Platform-based check
+        //@ts-ignore
+        const isIOSByUA = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
         const isIOSByPlatform = /iPad|iPhone|iPod/.test(platform);
-
-        // iPad Pro check
-        const isIPadOS =
-          //@ts-ignore
-          platform === 'MacIntel' && maxTouchPoints > 1 && !window.MSStream;
-
-        // Safari check
+        //@ts-ignore
+        const isIPadOS = platform === 'MacIntel' && maxTouchPoints > 1 && !window.MSStream;
         const isSafari = /Safari/.test(userAgent) && !/Chrome/.test(userAgent);
-
         return isIOSByUA || isIOSByPlatform || isIPadOS || isSafari;
       };
 
-      // Conditional rendering based on detection
       return (
         <div
           className={`flex items-center justify-center rounded-full transition-all duration-300 ${hasActiveTool ? 'h-20 w-20' : 'h-28 w-28'}`}
@@ -107,6 +94,7 @@ const Avatar = dynamic<AvatarProps>(
   { ssr: false }
 );
 
+// This is the corrected animation object for the Vercel build
 const MOTION_CONFIG = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -264,11 +252,9 @@ const Chat = () => {
     }
   };
 
-  // Check if this is the initial empty state (no messages)
   const isEmptyState =
     !currentAIMessage && !latestUserMessage && !loadingSubmit;
 
-  // Calculate header height based on hasActiveTool
   const headerHeight = hasActiveTool ? 100 : 180;
 
   return (
@@ -291,7 +277,6 @@ const Chat = () => {
         </div>
       </div>
 
-      {/* Fixed Avatar Header with Gradient */}
       <div
         className="fixed top-0 right-0 left-0 z-50 bg-gradient-to-b from-white via-white/95 via-50% to-transparent dark:from-black dark:via-black/95 dark:via-50% dark:to-transparent"
       >
@@ -330,9 +315,7 @@ const Chat = () => {
         </div>
       </div>
 
-      {/* Main Content Area */}
       <div className="container mx-auto flex h-full max-w-3xl flex-col">
-        {/* Scrollable Chat Content */}
         <div
           className="flex-1 overflow-y-auto px-2"
           style={{ paddingTop: `${headerHeight}px` }}
@@ -371,22 +354,21 @@ const Chat = () => {
           </AnimatePresence>
         </div>
 
-{/* Fixed Bottom Bar */}
-<div
-  className="sticky bottom-0 px-2 pt-3 md:px-0 md:pb-4 transition-colors duration-300 bg-white dark:bg-black"
->
-  <div className="relative flex flex-col items-center gap-3">
-    <HelperBoost submitQuery={submitQuery} setInput={setInput} />
-    <ChatBottombar
-      input={input}
-      handleInputChange={handleInputChange}
-      handleSubmit={onSubmit}
-      isLoading={isLoading}
-      stop={handleStop}
-      isToolInProgress={isToolInProgress}
-    />
-  </div>
-</div>
+        <div
+          className="sticky bottom-0 px-2 pt-3 md:px-0 md:pb-4 transition-colors duration-300 bg-white dark:bg-black"
+        >
+          <div className="relative flex flex-col items-center gap-3">
+            <HelperBoost submitQuery={submitQuery} setInput={setInput} />
+            <ChatBottombar
+              input={input}
+              handleInputChange={handleInputChange}
+              handleSubmit={onSubmit}
+              isLoading={isLoading}
+              stop={handleStop}
+              isToolInProgress={isToolInProgress}
+            />
+          </div>
+        </div>
 
         <a
           href="https://linkedin.com/in/monitkjangir"
