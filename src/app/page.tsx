@@ -4,7 +4,7 @@ import FluidCursor from '@/components/FluidCursor';
 import { Button } from '@/components/ui/button';
 import { GithubButton } from '@/components/ui/github-button';
 import WelcomeModal from '@/components/welcome-modal';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion'; // FIX: Imported Variants
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -44,8 +44,8 @@ export default function Home() {
   const goToChat = (query: string) =>
     router.push(`/chat?query=${encodeURIComponent(query)}`);
 
-  /* hero animations (unchanged) */
-  const topElementVariants = {
+  /* hero animations (corrected with Variants type) */
+  const topElementVariants: Variants = { // FIX: Added Variants type
     hidden: { opacity: 0, y: -60 },
     visible: {
       opacity: 1,
@@ -53,7 +53,7 @@ export default function Home() {
       transition: { type: 'tween', ease: 'easeOut', duration: 0.8 },
     },
   };
-  const bottomElementVariants = {
+  const bottomElementVariants: Variants = { // FIX: Added Variants type
     hidden: { opacity: 0, y: 80 },
     visible: {
       opacity: 1,
@@ -69,7 +69,7 @@ export default function Home() {
 
     // Précharger les vidéos aussi
     const linkWebm = document.createElement('link');
-    linkWebm.rel = 'preload'; // Note: prefetch au lieu de preload
+    linkWebm.rel = 'preload';
     linkWebm.as = 'video';
     linkWebm.href = '/final_memojis.webm';
     document.head.appendChild(linkWebm);
@@ -97,7 +97,6 @@ export default function Home() {
       <div className="absolute top-6 right-8 z-20 flex items-center gap-2">
         <ThemeToggle />
         <GithubButton
-          //targetStars={69}
           animationDuration={1.5}
           label="Star"
           size={'sm'}
