@@ -21,12 +21,12 @@ interface SimplifiedChatViewProps {
 
 const MOTION_CONFIG = {
   initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: 20 },
-  transition: {
-    duration: 0.3,
-    ease: 'easeOut',
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3, type: 'tween', ease: 'easeOut' }, // <-- THE FIX
   },
+  exit: { opacity: 0, y: 20 },
 };
 
 export function SimplifiedChatView({
