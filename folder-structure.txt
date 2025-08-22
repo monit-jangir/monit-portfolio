@@ -1,0 +1,107 @@
+.
+├── assets
+│   └── readme-photo.png
+├── components.json
+├── eslint.config.mjs
+├── folder_structure.txt
+├── folder-structure.txt
+├── LICENSE
+├── next.config.ts
+├── package.json
+├── pnpm-lock.yaml
+├── postcss.config.mjs
+├── public
+│   ├── avatar-landing.png
+│   ├── favicon.svg
+│   ├── final_memojis_ios.mp4
+│   ├── final_memojis.webm
+│   ├── landing-memojis.png
+│   ├── monit resume.pdf
+│   ├── Plant_disease_detectionwebsite.png
+│   ├── profile-yuvi-03.jpeg
+│   ├── profile-yuvi.jpg
+│   └── Resume_Monit_Jangir_AI.png
+├── README.md
+├── SETUP_INSTRUCTIONS.md
+├── src
+│   ├── app
+│   │   ├── api
+│   │   │   ├── chat
+│   │   │   │   ├── prompt.ts
+│   │   │   │   ├── route.ts
+│   │   │   │   └── tools
+│   │   │   │       ├── getContact.ts
+│   │   │   │       ├── getCrazy.ts
+│   │   │   │       ├── getInternship.ts
+│   │   │   │       ├── getPresentation.ts
+│   │   │   │       ├── getProjects.ts
+│   │   │   │       ├── getResume.ts
+│   │   │   │       ├── getSkills.ts
+│   │   │   │       ├── getSports.ts
+│   │   │   │       └── getWeather.ts
+│   │   │   └── github-stars
+│   │   │       └── route.ts
+│   │   ├── chat
+│   │   │   └── page.tsx
+│   │   ├── glob.css
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── components
+│   │   ├── chat
+│   │   │   ├── chat-bottombar.tsx
+│   │   │   ├── chat-landing.tsx
+│   │   │   ├── chat-message-content.tsx
+│   │   │   ├── chat.tsx
+│   │   │   ├── HelperBoost.tsx
+│   │   │   ├── simple-chat-view.tsx
+│   │   │   └── tool-renderer.tsx
+│   │   ├── contact.tsx
+│   │   ├── crazy.tsx
+│   │   ├── FluidCursor.tsx
+│   │   ├── InternshipCard.tsx
+│   │   ├── magicui
+│   │   │   └── animated-shiny-text.tsx
+│   │   ├── photos.tsx
+│   │   ├── presentation.tsx
+│   │   ├── projects
+│   │   │   ├── AllProjects.tsx
+│   │   │   ├── apple-cards-carousel.tsx
+│   │   │   └── Data.tsx
+│   │   ├── resume.tsx
+│   │   ├── skills.tsx
+│   │   ├── sport.tsx
+│   │   ├── theme-provider.tsx
+│   │   ├── ui
+│   │   │   ├── animated-testimonials.tsx
+│   │   │   ├── avatar.tsx
+│   │   │   ├── badge.tsx
+│   │   │   ├── button-with-tooltip.tsx
+│   │   │   ├── button.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── chat
+│   │   │   │   ├── chat-bubble.tsx
+│   │   │   │   └── message-loading.tsx
+│   │   │   ├── collapsible.tsx
+│   │   │   ├── compare.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   ├── drawer.tsx
+│   │   │   ├── github-button.tsx
+│   │   │   ├── input-landing.tsx
+│   │   │   ├── scroll-area.tsx
+│   │   │   ├── separator.tsx
+│   │   │   ├── sonner.tsx
+│   │   │   ├── sparkles.tsx
+│   │   │   ├── textarea.tsx
+│   │   │   ├── ThemeToggle.tsx
+│   │   │   ├── tooltip.tsx
+│   │   │   └── turbo-title.tsx
+│   │   └── welcome-modal.tsx
+│   ├── hooks
+│   │   ├── use-FluidCursor.tsx
+│   │   └── use-outside-click.tsx
+│   └── lib
+│       └── utils.ts
+└── tsconfig.json
+
+18 directories, 87 files
