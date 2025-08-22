@@ -10,16 +10,16 @@ export function Presentation() {
     name: 'Monit Kumar Jangir',
     age: 'AI & Data Science Enthusiast',
     location: 'Jaipur, India',
-    // Add a newline character after the emoji
     description:
       "Hey 👋\nI'm Monit, a developer passionate about building intelligent systems that solve real-world problems. I thrive on turning raw data into meaningful stories and creating AI-powered experiences.",
-    src: '/monit-profile .jpg', // Change this filename to your actual photo
+    src: '/monit-profile.jpg', // Make sure this image is in your /public folder
     fallbackSrc:
       'https://images.unsplash.com/photo-1610216705422-caa3fcb6d158?q=80&w=3560&auto=format&fit=crop&ixlib.rb-4.0.3',
   };
 
   // Animation variants for text elements
-  const textVariants = {
+  // FIX #1: Added the Variants type here
+  const textVariants: Variants = { 
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -28,20 +28,21 @@ export function Presentation() {
     },
   };
 
-  // Animation for the entire paragraph rather than word-by-word
+  // Animation for the entire paragraph
+  // FIX #2: Ensured this also has the Variants type (it was already correct in your code)
   const paragraphAnimation: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      type: 'tween',
-      ease: 'easeOut',
-      delay: 0.2,
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        type: 'tween',
+        ease: 'easeOut',
+        delay: 0.2,
+      },
     },
-  },
-};
+  };
 
   return (
     <div className="mx-auto w-full max-w-5xl py-6 font-sans">
