@@ -23,7 +23,7 @@ const InternshipCard = () => {
           {/* Avatar placeholder - Remember to add your photo to the /public folder */}
           <div className="bg-muted h-16 w-16 overflow-hidden rounded-full shadow-md">
             <img
-              src="/monit-profile.jpg" // Change this filename to your actual photo
+              src="/monit-profile .jpg" // Change this filename to your actual photo
               alt="Monit's avatar"
               className="h-full w-full object-cover"
             />
