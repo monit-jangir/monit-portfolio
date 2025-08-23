@@ -58,14 +58,10 @@ export const Carousel = ({
     }
   };
 
-  // Get the card width and gap based on viewport size
   const getScrollDistance = () => {
-    // Card width (w-56 = 224px) + gap-4 (16px)
     const cardWidth = 224;
     const gap = 16;
     const totalWidth = cardWidth + gap;
-
-    // Scroll by 2 cards on desktop, 1 on mobile
     const cardsToScroll = 1;
     return totalWidth * cardsToScroll;
   };
@@ -90,8 +86,8 @@ export const Carousel = ({
 
   const handleCardClose = (index: number) => {
     if (carouselRef.current) {
-      const cardWidth = 224; // w-56 (224px)
-      const gap = isMobile() ? 16 : 16; // gap-4 (16px)
+      const cardWidth = 224;
+      const gap = window.innerWidth < 768 ? 16 : 16;
       const scrollPosition = (cardWidth + gap) * index;
       carouselRef.current.scrollTo({
         left: scrollPosition,
@@ -99,10 +95,6 @@ export const Carousel = ({
       });
       setCurrentIndex(index);
     }
-  };
-
-  const isMobile = () => {
-    return window && window.innerWidth < 768;
   };
 
   return (
@@ -124,7 +116,7 @@ export const Carousel = ({
           <div
             className={cn(
               'flex flex-row justify-start gap-4',
-              'mx-auto max-w-7xl' // remove max-w-4xl if you want the carousel to span the full width of its container
+              'mx-auto max-w-7xl'
             )}
           >
             {items.map((item, index) => (
@@ -140,7 +132,6 @@ export const Carousel = ({
                     duration: 0.5,
                     delay: 0.2 * index,
                     ease: 'easeOut',
-
                   },
                 }}
                 key={'card' + index}
@@ -233,7 +224,6 @@ export const Card = ({
               layoutId={layout ? `card-${card.title}` : undefined}
               className="relative z-[60] mx-auto my-10 h-fit max-w-5xl rounded-3xl bg-white font-sans dark:bg-neutral-900"
             >
-              {/* Sticky close button */}
               <div className="sticky top-4 z-52 flex justify-end px-8 pt-8 md:px-14 md:pt-8">
                 <button
                   className="flex h-8 w-8 items-center justify-center rounded-full bg-black/90 shadow-md dark:bg-white/90"
@@ -242,8 +232,6 @@ export const Card = ({
                   <IconX className="h-6 w-6 text-neutral-100 dark:text-neutral-900" />
                 </button>
               </div>
-
-              {/* Header section with consistent padding */}
               <div className="relative px-8 pt-2 pb-0 md:px-14">
                 <div>
                   <motion.p
@@ -260,24 +248,19 @@ export const Card = ({
                   </motion.p>
                 </div>
               </div>
-
-              {/* Content with consistent padding */}
               <div className="px-8 pt-8 pb-14 md:px-14">{card.content}</div>
             </motion.div>
           </div>
         )}
       </AnimatePresence>
-      
-      {/* THIS IS THE CORRECTED CARD BUTTON */}
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
-        className="relative z-10 flex h-80 w-56 flex-col justify-end overflow-hidden rounded-3xl p-8 text-white"
+        className="relative z-10 flex h-80 w-56 flex-col items-start justify-end overflow-hidden rounded-3xl p-8 text-white"
       >
-        {/* The corrected gradient overlay */}
+        {/* THIS IS THE ONLY CHANGE: A CORRECT GRADIENT OVERLAY */}
         <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
         
-        {/* The text content, now on a higher z-index */}
         <div className="relative z-30">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
@@ -292,8 +275,6 @@ export const Card = ({
             {card.title}
           </motion.p>
         </div>
-        
-        {/* The background image */}
         <BlurImage
           src={card.src}
           alt={card.title}
@@ -302,5 +283,35 @@ export const Card = ({
         />
       </motion.button>
     </>
+  );
+};
+
+// THIS COMPONENT IS NOW INCLUDED AGAIN
+export const BlurImage = ({
+  height,
+  width,
+  src,
+  className,
+  alt,
+  ...rest
+}: ImageProps) => {
+  const [isLoading, setLoading] = useState(true);
+  return (
+    <Image
+      className={cn(
+        'transition duration-300',
+        isLoading ? 'blur-sm' : 'blur-0',
+        className
+      )}
+      onLoad={() => setLoading(false)}
+      src={src}
+      width={width}
+      height={height}
+      loading="lazy"
+      decoding="async"
+      blurDataURL={typeof src === 'string' ? src : undefined}
+      alt={alt ? alt : 'Background of a beautiful view'}
+      {...rest}
+    />
   );
 };
