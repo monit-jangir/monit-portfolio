@@ -19,7 +19,7 @@ const PROJECT_CONTENT = [
     links: [
       {
         name: 'GitHub Repository',
-        url: 'https://github.com/monit-jangir/Resume-Optimizer-Agent', // I found this from our previous conversation!
+        url: 'https://github.com/monit-jangir/resume-optimizer.git, // I found this from our previous conversation!
       },
     ],
     images: [
