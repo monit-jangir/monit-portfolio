@@ -183,7 +183,7 @@ export const Card = ({
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { onCardClose, currentIndex } = useContext(CarouselContext);
+  const { onCardClose } = useContext(CarouselContext);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -267,27 +267,33 @@ export const Card = ({
           </div>
         )}
       </AnimatePresence>
+      
+      {/* THIS IS THE CORRECTED CARD BUTTON */}
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
-        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 dark:bg-neutral-900"
+        className="relative z-10 flex h-80 w-56 flex-col justify-end overflow-hidden rounded-3xl p-8 text-white"
       >
-        <div className="absolute inset-x-0 top-0 z-30 h-full cursor-pointer bg-gradient-to-b from-black hover:scale-110 via-transparent to-transparent" />
-        {/*<div className="absolute inset-0 z-20 cursor-pointer bg-black/20 hover:bg-black/2" />*/}
-        <div className="relative z-40 p-8">
+        {/* The corrected gradient overlay */}
+        <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+        
+        {/* The text content, now on a higher z-index */}
+        <div className="relative z-30">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
-            className="text-left font-sans text-sm font-medium text-white md:text-base"
+            className="text-left font-sans text-sm font-medium"
           >
             {card.category}
           </motion.p>
           <motion.p
             layoutId={layout ? `title-${card.title}` : undefined}
-            className="max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] text-white md:text-3xl"
+            className="max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] md:text-3xl"
           >
             {card.title}
           </motion.p>
         </div>
+        
+        {/* The background image */}
         <BlurImage
           src={card.src}
           alt={card.title}
@@ -296,34 +302,5 @@ export const Card = ({
         />
       </motion.button>
     </>
-  );
-};
-
-export const BlurImage = ({
-  height,
-  width,
-  src,
-  className,
-  alt,
-  ...rest
-}: ImageProps) => {
-  const [isLoading, setLoading] = useState(true);
-  return (
-    <Image
-      className={cn(
-        'transition duration-300',
-        isLoading ? 'blur-sm' : 'blur-0',
-        className
-      )}
-      onLoad={() => setLoading(false)}
-      src={src}
-      width={width}
-      height={height}
-      loading="lazy"
-      decoding="async"
-      blurDataURL={typeof src === 'string' ? src : undefined}
-      alt={alt ? alt : 'Background of a beautiful view'}
-      {...rest}
-    />
   );
 };
