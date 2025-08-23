@@ -164,13 +164,13 @@ export const data = [
   {
     category: 'AI Agent',
     title: 'Resume Optimizer Agent',
-    src: '/project-resume-optimizer.png', // Make sure this image exists in /public
+    src: '/resume-optimizer-agent.png', // Make sure this image exists in /public
     content: <ProjectContent project={{ title: 'Resume Optimizer Agent' }} />,
   },
   {
     category: 'Research',
     title: 'Maximizing UAV Fog Deployment Efficiency',
-    src: '/project-uav.png', // Make sure this image exists in /public
+    src: '/uav.jpg', // Make sure this image exists in /public
     content: (
       <ProjectContent project={{ title: 'Maximizing UAV Fog Deployment Efficiency' }} />
     ),
